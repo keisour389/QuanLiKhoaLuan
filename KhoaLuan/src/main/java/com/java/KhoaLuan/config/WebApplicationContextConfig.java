@@ -10,7 +10,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
-@ComponentScan(basePackages="com.java.KhoaLuan.controller")
+@ComponentScan("com.java.KhoaLuan")
 @EnableWebMvc
 public class WebApplicationContextConfig implements WebMvcConfigurer{
 

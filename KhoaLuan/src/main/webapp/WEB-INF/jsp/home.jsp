@@ -9,6 +9,8 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <p>This is the homepage!</p>
+        <c:forEach items="${userList}" var="user">
+            <h1>${user.email}</h1>
+        </c:forEach>
     </body>
 </html>
