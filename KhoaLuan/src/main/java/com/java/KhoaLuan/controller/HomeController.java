@@ -18,13 +18,10 @@ import com.java.KhoaLuan.service.impl.UserServiceImpl;
 @Controller
 public class HomeController {
 	
-	@Autowired
-	private UserService userService;
+	private final UserService userService;
 	
-	private final UserRepository userRepository;
-	
-	public HomeController(UserRepository userRepository) {
-		this.userRepository = userRepository;
+	public HomeController(UserService userService) {
+		this.userService = userService;
 	}
 	
 	@RequestMapping("/test")
@@ -36,7 +33,10 @@ public class HomeController {
 	public ModelAndView test(HttpServletResponse response) throws IOException{
 		System.out.println("------------");
 		ModelAndView mav = new ModelAndView("home");
-		//mav.addObject("userList", userList);
+		List<User> userList = userService.getAllUsers();
+		System.out.println(userList.get(0).getEmail());
+		mav.addObject("test", userList.get(0).getEmail());
+		mav.addObject("userList", userList);
 		return mav;
 	}
 }

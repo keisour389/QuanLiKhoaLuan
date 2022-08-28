@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -9,8 +10,9 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <c:forEach items="${userList}" var="user">
-            <h1>${user.email}</h1>
+        <c:forEach var="user" items="${userList}">
+            <h1>${user}</h1>
+            <h1>${user.id}</h1>
         </c:forEach>
     </body>
 </html>
