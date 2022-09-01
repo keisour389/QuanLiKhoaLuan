@@ -2,6 +2,8 @@ package com.java.KhoaLuan.domain;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -13,7 +15,7 @@ import com.java.KhoaLuan.enums.UserRole;
  * */
 @Entity
 @Table(name ="user")
-public class User extends AbstractEntity implements Serializable {
+public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -42,9 +44,30 @@ public class User extends AbstractEntity implements Serializable {
     @Enumerated(EnumType.STRING)
     private UserRole role;
     
-    @NotNull
     @Column(name="last_login_date")
     private Instant lastLoginDate;
+    
+	@NotNull
+	@Column(name = "deleted")
+	private boolean deleted = false;
+	
+	@Column(name = "created_by")
+	private Long createdBy;
+	
+	@Column(name = "last_modified_by")
+	private Long lastModifiedBy;
+	
+	@Column(name = "created_date")
+	private Instant createdDate = Instant.now();
+	
+	@Column(name = "last_modified_date")
+	private Instant lastModifiedDate;
+	
+    @OneToMany(mappedBy = "user")
+    private Set<ThesisDefenseUser> thesisDefenseUsers = new HashSet<ThesisDefenseUser>();
+    
+    @OneToMany(mappedBy = "user")
+    private Set<CriteriaStudyUser> criteriaStudyUser = new HashSet<CriteriaStudyUser>();
 
 	public Long getId() {
 		return id;
@@ -101,5 +124,52 @@ public class User extends AbstractEntity implements Serializable {
 	public void setLastLoginDate(Instant lastLoginDate) {
 		this.lastLoginDate = lastLoginDate;
 	}
-		
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
+
+	public Long getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(Long createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Long getLastModifiedBy() {
+		return lastModifiedBy;
+	}
+
+	public void setLastModifiedBy(Long lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
+
+	public Instant getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Instant createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public Instant getLastModifiedDate() {
+		return lastModifiedDate;
+	}
+
+	public void setLastModifiedDate(Instant lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
+	}
+
+	public Set<ThesisDefenseUser> getThesisDefenseUsers() {
+		return thesisDefenseUsers;
+	}
+
+	public void setThesisDefenseUsers(Set<ThesisDefenseUser> thesisDefenseUsers) {
+		this.thesisDefenseUsers = thesisDefenseUsers;
+	}
 }
