@@ -29,6 +29,8 @@ public class Constant {
 	public static final String THESIS_DEFENSE_CREATED_SUCCESSFULLY_VALUE = "Hội đồng bảo vệ khóa luận đã được tạo thành công";
 	public static final String THESIS_DEFENSE_LIST = "thesisDefenses";
 	public static final String THESIS_DEFENSE_EMPTY_LIST = "Hiện tại thầy/cô chưa tham dự hội đồng bảo vệ khóa luận nào";
+	public static final String MAKE_DONE_SUCCESSFULLY_KEY = "markDoneSuccessfully";
+	public static final String MAKE_DONE_SUCCESSFULLY_VALUE = "Đã chuyển trạng thái sang hoàn thành cho hội đồng %s";
 	// Home page
 	public static final String USER_CHANGE_PASSWORD_KEY = "userChangePassword";
 	public static final String USER_CHANGE_PASSWORD_VALUE = "Thay đổi mật khẩu thành công";
@@ -37,5 +39,23 @@ public class Constant {
 	public static final String ADMIN_PASSWORD = "admin";
 	public static final String ADMIN_FIRST_NAME = "admin";
 	public static final String ADMIN_LAST_NAME = "admin";
-	
+	// Mail utils
+	public static final String SMTP_AUTH_KEY = "mail.smtp.auth";
+	public static final String SMTP_AUTH_VALUE = "true";
+	public static final String SMTP_STARTTLS_ENABLE_KEY = "mail.smtp.starttls.enable";
+	public static final String SMTP_STARTTLS_ENABLE_VALUE = "true";
+	public static final String SMTP_HOST_KEY = "mail.smtp.host";
+	public static final String SMTP_HOST_VALUE = "smtp.gmail.com";
+	public static final String SMTP_PORT_KEY = "mail.smtp.port";
+	public static final String SMTP_PORT_VALUE = "587";
+	public static final String ACCOUNT = "limit389@gmail.com";
+	public static final String PASSWORD = "ecmqhvavkgwdhcyi";
+	public static final String SUBJECT = "Hội đồng bảo vệ khóa luận trường đại học Mở";
+	public static final String CONTENT = "Quý thầy/cô được phân công với vai trò là người phản biện cho hội đồng bảo vệ khóa luận, mã định danh: %d";
+	// Home page
+	public static final String USER_LOGGED_IN= "userLoggedIn";
+	public static final String USER_MINISTRY = "ministry";
+	public static final String USER_ADMIN = "admin";
+	public static final String USER_TEACHER = "teacher";
+	public static final String USER_STUDENT = "student";
 }

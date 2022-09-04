@@ -3,6 +3,7 @@ package com.java.KhoaLuan.controller;
 import java.util.Date;
 import java.util.Optional;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.java.KhoaLuan.config.AuthoritiesConstants;
 import com.java.KhoaLuan.config.Constant;
 import com.java.KhoaLuan.domain.User;
 import com.java.KhoaLuan.service.UserService;
@@ -24,12 +26,14 @@ public class UserController {
 	}
 	
 	@GetMapping("/register")
+	@Secured(AuthoritiesConstants.ADMIN)
 	public String register(Model model) {
 		model.addAttribute("user", new User());
 		return "register";
 	}
-	
+		
 	@PostMapping("/register")
+	@Secured(AuthoritiesConstants.ADMIN)
 	public String register(@ModelAttribute(value="user") User user, Model model) {
 		Optional<User> userOpt = userService.findOneByEmail(user.getEmail());
 		if(userOpt.isPresent()) {
@@ -59,10 +63,7 @@ public class UserController {
 			@ModelAttribute(value="newConfirmPassword") String newConfirmPassword, Model model,
 			Authentication authentication) {
 		String email = authentication.getName();
-		System.out.println("Authentication: " + authentication.getName());
-		System.out.println("New password: " + newPassword);
 		Optional<User> userOpt = userService.findOneByEmail(email);
-		System.out.println("Email: " + email);
 		if (userOpt.isEmpty()) {
 			model.addAttribute(Constant.ERR_MSG_KEY, Constant.EMAIL_IS_NOT_EXIST);
 			return "changePassword";

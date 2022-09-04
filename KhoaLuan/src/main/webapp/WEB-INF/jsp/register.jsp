@@ -133,15 +133,11 @@
 
                             var copyString = "{ ID: " + id.innerHTML + ", Email: " + email.innerHTML + ", Password: " + password.innerHTML + " }";
 
-                            // /* Select the text field */
-                            // copyText.select();
-                            // copyText.setSelectionRange(0, 99999); /* For mobile devices */
-
                             /* Copy the text inside the text field */
                             navigator.clipboard.writeText(copyString);
 
                             /* Alert the copied text */
-                            alert("Sao chép tài khoản thành công: " + email.innerHTML);
+                            alert("Nhấn 'OK' để sao chép thông tin tài khoản: " + email.innerHTML);
                         }
                     </script>
                 </body>

@@ -10,6 +10,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import com.java.KhoaLuan.config.AuthoritiesConstants;
+
 @EnableWebSecurity
 @ComponentScan("com.java.KhoaLuan")
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -36,7 +38,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
     	http.authorizeRequests()
             .antMatchers("/").permitAll()
-            .anyRequest().authenticated()
+            .antMatchers("/register", "/admin").hasAuthority(AuthoritiesConstants.ADMIN)
+            .antMatchers("/create-study", "/create-thesis-defense", "/mark-done", "/ministry")
+            .hasAnyAuthority(AuthoritiesConstants.ADMIN, AuthoritiesConstants.MINISTRY)
+            .antMatchers("/mark", "/teacher").hasAnyAuthority(AuthoritiesConstants.TEACHER)
+            .antMatchers("/student").hasAnyAuthority(AuthoritiesConstants.STUDENT)
+            .antMatchers("/manage-thesis-defense")
+            .hasAnyAuthority(AuthoritiesConstants.TEACHER, AuthoritiesConstants.ADMIN,
+            		AuthoritiesConstants.MINISTRY)
+            .antMatchers("/change-password").authenticated()
+            //.anyRequest().authenticated()
             .and()
             .formLogin()
             //.defaultSuccessUrl("/home")

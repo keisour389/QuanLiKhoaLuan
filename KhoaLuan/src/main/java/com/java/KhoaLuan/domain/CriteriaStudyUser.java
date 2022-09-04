@@ -28,7 +28,7 @@ public class CriteriaStudyUser implements Serializable {
     
     @ManyToOne
     @JoinColumn(name = "criteria_id", insertable = false, updatable = false)
-    private Study criteria;
+    private Criteria criteria;
 	
 	@Id
     @NotNull
@@ -60,11 +60,11 @@ public class CriteriaStudyUser implements Serializable {
 		this.criteriaId = criteriaId;
 	}
 
-	public Study getCriteria() {
+	public Criteria getCriteria() {
 		return criteria;
 	}
 
-	public void setCriteria(Study criteria) {
+	public void setCriteria(Criteria criteria) {
 		this.criteria = criteria;
 	}
 
